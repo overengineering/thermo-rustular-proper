@@ -40,7 +40,8 @@ fn test_launch_with_bad_password() {
 
 #[test]
 fn test_launch_with_good_password() {
-    let launch_response = launch(api_password_generator::build_password()).unwrap();
+    let launch_response = launch(&api_password_generator::build_password("NICEGAMEOFCHESS"))
+        .unwrap();
 
     assert_eq!(launch_response.result, ApiResultState::Success);
     assert_ne!(launch_response.message, "Invalid Launch Code");
