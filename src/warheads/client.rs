@@ -1,8 +1,3 @@
-extern crate reqwest;
-extern crate serde;
-
-extern crate serde_json;
-
 use api_password_generator;
 
 use warheads::api;
@@ -12,14 +7,6 @@ pub struct Client {}
 impl Client {
     pub fn launch<W: api::Api>(president_password: &str) -> Result<api::LaunchResponse, String> {
         W::launch(president_password)
-        // let client = reqwest::Client::new().unwrap();
-
-        // let launch_response: LaunchResponse = client.post(&("http://gitland.azurewebsites.net:80/api/warheads/launch?launchCode="
-        //                 .to_owned() + president_password))
-        //     .send()?
-        //     .json()?;
-
-        // Ok(launch_response)
     }
 }
 
