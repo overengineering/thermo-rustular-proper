@@ -2,7 +2,7 @@ extern crate chrono;
 use self::chrono::prelude::*;
 use self::chrono::TimeZone;
 
-pub const USER_PASSWORD: &str = "NICEGAMEOFCHESS";
+const USER_PASSWORD: &str = "USER_PASSWORD";
 
 pub fn build_password(user_password: &str) -> String {
     build_password_with_date(Utc::today(), user_password)

@@ -4,8 +4,6 @@ extern crate serde;
 extern crate serde_json;
 
 use warheads::api;
-use warheads::api::Api;
-use api_password_generator;
 
 pub struct RealApi {}
 
@@ -39,7 +37,17 @@ impl api::Api for RealApi {
     }
 }
 
-#[test]
-fn test_launch_call() {
-    assert!(RealApi::launch(&api_password_generator::build_password(api_password_generator::USER_PASSWORD)).is_ok())
+#[cfg(test)]
+pub mod test {
+    use warheads::api::Api;
+    use user_password_provider::UserPasswordProvider;
+    use user_password_provider::test::MockUserPasswordProvider;
+
+    #[test]
+    fn test_launch_call() {
+        let password = MockUserPasswordProvider::get_password();
+        let api_password = ::api_password_generator::build_password(&password);
+
+        assert!(::warheads::real_api::RealApi::launch(&api_password).is_ok())
+    }
 }
