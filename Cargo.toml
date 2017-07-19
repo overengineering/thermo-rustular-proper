@@ -1,5 +1,5 @@
 [package]
-name = "ThermoRustularProper"
+name = "thermo_rustular_proper"
 version = "0.1.0"
 authors = ["Stefano Chiodino <louderth@gmail.com>"]
 
