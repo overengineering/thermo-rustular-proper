@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Launch",
+            "program": "${workspaceRoot}/target/debug/deps/thermo_rustular_proper-797e16f0fd37f76e",
+            "args": [
+                "--test",
+                "test_launch_with_good_password"
+            ],
+            "cwd": "${workspaceRoot}",
+            "initCommands": [
+                "command script import \"/Users/stefano/dev/rust/rust/src/etc/lldb_rust_formatters.py\"",
+                "type summary add --no-value --python-function lldb_rust_formatters.print_val -x \".*\" --category Rust",
+                "type category enable Rust"
+            ]
+        }
+    ]
+}

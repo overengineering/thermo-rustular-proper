@@ -5,9 +5,9 @@ extern crate serde_json;
 
 use warheads::api;
 
-pub struct RealApi {}
+pub struct HttpApi {}
 
-impl RealApi {
+impl HttpApi {
     fn post(client: &mut reqwest::Client, password: &str) -> reqwest::Result<reqwest::Response> {
         let url = "http://gitland.azurewebsites.net:80/api/warheads/launch?launchCode="
             .to_owned() + password;
@@ -16,7 +16,7 @@ impl RealApi {
     }
 }
 
-impl api::Api for RealApi {
+impl api::Api for HttpApi {
     fn launch(password: &str) -> Result<api::LaunchResponse, String> {
         let mut client = match reqwest::Client::new() {
             Ok(client) => client,
@@ -48,6 +48,6 @@ pub mod test {
         let password = MockUserPasswordProvider::get_password();
         let api_password = ::api_password_generator::build_password(&password);
 
-        assert!(::warheads::real_api::RealApi::launch(&api_password).is_ok())
+        assert!(::warheads::http_api::HttpApi::launch(&api_password).is_ok())
     }
 }

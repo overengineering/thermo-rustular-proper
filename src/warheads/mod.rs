@@ -1,4 +1,4 @@
-pub mod client;
+pub mod service;
 
 mod api;
-mod real_api;
+mod http_api;
